@@ -4,16 +4,32 @@
       <span>Vue.js PWA</span>
     </header>
     <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
-      <router-view></router-view>
+      <div class="wrapper">
+            <div class="books">
+               <book v-for="list in lists" :key="list.imageUrl" :list="list"></book>
+            </div>
+          </div>
     </main>
   </div>
 </template>
 
 <script>
+import data from "./db.json"
+import Book from "./components/Books";
 export default {
-  name: 'app'
-}
+      name: 'app',
+      data() {
+        return {
+          lists: []
+        }
+      },
+      created() {
+        this.lists = data;
+      },
+      components: {
+        Book
+      }
+    }
 </script>
 
 <style>
